@@ -41,11 +41,21 @@ class reaction extends CI_controller{
         public function comment(){
             $this->load->library('session');
             $blog=$this->input->post('blogid');
-            $comment=$this->input->post('comment');
             $userId= $this->session->userdata('userid');
+            
             if($userId){
-               
+              $this->load->library('form_validation') ;
+              $this->form_validation->set_rules('comment','Comment','required|alpha_numeric_spaces');
+              if($this->form_validation->run()){
+                $comment=$this->input->post('comment');
+                $this->load->model('reactionModel');
+                $cmt=$this->reactionModel('comment');
+
                 
+              }
+
+              
+           
             }
             else{
                 $this->load->view('login');

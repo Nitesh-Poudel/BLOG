@@ -18,11 +18,18 @@
         }
 
 
-        public function showContent(){
+        public function showContent($category){
             $this->db->select('blogs.*, users.fname, users.lname');
             $this->db->from('blogs');
+           
+
             $this->db->join('users', 'blogs.userid = users.uid');
             $this->db->order_by('blogs.blogid', 'DESC');
+
+            if (!empty($category)) {
+                $this->db->where('catagoryID', $category);
+            }
+        
 
             $query = $this->db->get();
             if($query->num_rows()>=1){

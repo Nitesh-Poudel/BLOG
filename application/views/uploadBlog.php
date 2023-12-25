@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload</title>
     <style>
-        .container{margin-top:0px}
-        #content{height:100px}
+       
+      .sidebar{width:500px;box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);}
+      .container, nav{box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
+      .contents{height:80vh;overflow:scroll}
+
+      .sidebar ul{margin:0px;padding:0px}
+      .sidebar li{padding:20px 5px;}
+      .container a{
+        text-decoration: none;
+        color:darkred;
+      }
+      nav a{
+        color:black;
+        margin:0px 50px;
+      }
+
+      .content{
+        margin:50px 0px;
+        height:150px;
+        overflow:hidden;
+        text-align: justify;
+        
+
+       
+      }
+      a{ color:black;}
+     nav a{
+        text-decoration: none;
+        color:white;
+        
+      }
+      a{ color:black;}
+      .content:hover{
+        background-color:aliceblue;
+      }
     </style>
       
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,8 +66,7 @@
             <option value="<?php echo $category->cid; ?>"><?php echo $category->catagory; ?></option>
         <?php endforeach; ?>
 
-        <option value="disable "><a href="https://www.facebook.com/">facebook</a></option>
-
+      
     </select><br>
 
     

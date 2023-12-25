@@ -6,26 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $result['title']; ?></title>
     <style>
+     
+      .contents,.content, {box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
+      .container a{
+        text-decoration: none;
+        color:darkred;
+      }
       nav a{
+        color:black;
         margin:0px 50px;
       }
+
       .content{
         margin:50px 0px;
-        padding:0px 50px;
-        text-align: justify;
-      
+       text-align: justify;
+       }
 
-       
-      }
-       .container a{
-        text-decoration: none;
-        color:white;
-        
-      }
-      .content:hover{
-        background-color:aliceblue;
-      }
- 
+      a{ color:black;}
+      .reaction{border-top:1px solid gray;padding-top:20px}
+    
+    
     </style>
   
   
@@ -42,7 +42,8 @@
         <h2><?= $result['title']; ?></h2>
         <p><?= $result['content']; ?></p>
         <h6><b>Author :- <?= $result['fname']; ?></b></h6>
-  <div class="reaction">
+  
+    <div class="reaction">
     <?php echo form_open('reaction/like')?>
       <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
       <button type="submit">Like </button><?php echo $likeCount?>

@@ -1,52 +1,39 @@
 <?php 
     class home extends CI_controller{
         public function index(){
-            $this->load->library('session');
+    $this->load->library('session');
+    $user = $this->session->userdata('userid');
+    if ($user) {
+        $this->load->model('loginModel');
+        $userDetail = $this->loginModel->userinfo($user);
+        if($userDetail){
+            $data = array('userDetail' => $userDetail);
+            $this->load->model('homeModel');
 
+            $category = $this->input->get('catagory'); // Using CodeIgniter's input class for better security
+            $contents = $this->homeModel->showContent($category);
+            
+            
+            if($contents){
+                $data['contents'] = $contents;
 
-            $user = $this->session->userdata('userid');
-            $data='';
-
-            if ($user) {
-                // User data is available in the session
-                // Pass user data to the view to display on the 'home' page
-               
-                //$this->load->view('home', ['userid' => $user]); // Load 'home' view with user data
-                $this->load->model('loginModel');
-                $userDetail=$this->loginModel->userinfo($user);
-                if($userDetail){
-                    $data = array();
-                    $this->load->helper('form');
-                    $data['userDetail'] = $userDetail; // Assign userDetail to the $data array
-
-                    
-                    
-                    $this->load->model('homeModel');
-                    $contents=$this->homeModel->showContent();
-                    if($contents){
-                        $contentsData=array();
-                        $contentsData['contents']=$contents;
-                    }
-
-
-                    $this->load->view('home',$contentsData);
+                $categoriesData = $this->homeModel->getCatagory(); 
+                if ($categoriesData) {
+                    $data['categories'] = $categoriesData;
                 }
-
-                //redirect('home');
-
-
-            } 
-            else {
-                // User data not found in session, handle accordingly (e.g., redirect to login)
-               
-                redirect('login'); // Redirect to login page if user data is not available;
-
+                else{
+                    echo"no-data_availabel";
+                }
             }
-           
-
-
-          
+            $this->load->view('home', $data);
         }
+
+
+    } 
+    else {
+        redirect('login');
+    }
+}
 
 
         public function admin(){

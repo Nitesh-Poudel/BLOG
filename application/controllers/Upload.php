@@ -9,8 +9,8 @@
 
                 $this->load->view('uploadBlog', $data);
                 foreach ($categoriesData as $category) {
-                     echo "opton1"." ".$category->catagory."<br>"; // Output each category's name
-                     $this->load->view('uploadBlog.php');
+                     //echo "opton1"." ".$category->catagory."<br>"; // Output each category's name
+                     
                 }
             }
         }

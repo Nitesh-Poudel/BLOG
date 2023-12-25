@@ -6,12 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
     <style>
+      .innerContainer{display:flex;}
+      .sidebar{width:50vw;box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);}
+      .contents,.content, nav{box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
+      .contents{height:80vh;overflow:scroll}
+
+      .sidebar ul{margin:0px;padding:0px}
+      .sidebar li{padding:20px 5px;}
+      .container a{
+        text-decoration: none;
+        color:darkred;
+      }
       nav a{
+        color:black;
         margin:0px 50px;
       }
+
       .content{
         margin:50px 0px;
-        height:100px;
+        height:150px;
         overflow:hidden;
         text-align: justify;
         
@@ -44,8 +57,16 @@
 
 
 <br><br>
-
-
+<div class="innerContainer">
+<div class="sidebar">
+  <h6>Catagory</h6>
+  <ul type="none">
+  <?php foreach ($categories as $category): ?>
+            <li><b><a href="Home?catagory=<?=$category->cid ?>"><?php echo $category->catagory; ?></a></b></li>
+        <?php endforeach; ?>
+  </ul>
+</div>
+<div class="contents">
 <?php foreach ($contents as $content): ?>
   <a href="<?= base_url('index.php/home/maincontent?blogid=' . $content->blogid) ?>">
   <div class="content">
@@ -55,6 +76,8 @@
   </div></a>
 <?php endforeach; ?>
 
+</div>
+</div>
 
 </div>
 </body>
