@@ -30,6 +30,7 @@
 
        
       }
+      #error{font-size:10px;color:red}
       a{ color:black;}
      nav a{
         text-decoration: none;
@@ -55,9 +56,9 @@
    
 
     <h1>Write_blog</h1>
-    <?php echo form_open('home/upload')?>
+    <?php echo form_open('Upload/upload')?>
       <input type="text" placeholder="title" id="title"class="form-control" name="title">
-      <div id="error"><?php echo form_error('title');?></div><br>
+      <div id="error"><b><?php echo form_error('title');?></b></div><br>
 
       <select id="catagory" name="catagory"class="form-control" >
         <option value="disable ">Choose catagory</option>
@@ -65,13 +66,14 @@
         <?php foreach ($categories as $category): ?>
             <option value="<?php echo $category->cid; ?>"><?php echo $category->catagory; ?></option>
         <?php endforeach; ?>
+        <div id="error"><b><?php echo form_error('catagory');?></b></div><br>
 
       
     </select><br>
 
     
       <textarea name="content" id="content"class="form-control"></textarea><br>
-      <div id="error"><?php echo form_error('content');?></div><br>
+      <div id="error"><b><?php echo form_error('content');?></b></div><br>
 
 
         <button type="submit"name="post" class="btn btn-primary">Post</button><br>

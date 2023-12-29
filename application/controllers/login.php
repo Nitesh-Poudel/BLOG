@@ -34,8 +34,11 @@ class login extends CI_controller{
             $password = md5($this->input->post('password'));
 
             if($email=='ntd@gmail.com'&&$password==md5('adminadmin')){
-                redirect('home/admin');
-                $this->load->view('uploadBlog');
+                //
+                $this->load->library('session');//loaded_session_library_file
+                $this->session->set_userdata('userid', 'admin');
+                redirect('adminPannel/admin');
+                //$this->load->view('uploadBlog');
             }
 
             $this->load->model('loginModel'); // Correct model loading

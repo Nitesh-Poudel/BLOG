@@ -53,14 +53,36 @@
 
 
 
-        public function getCatagory(){
+        public function getcatagoryForUpload(){
             $this->db->from('catagory');
             $this->db->order_by('catagory', 'ASC');
+         
             $query=$this->db->get();
             if($query->num_rows()>=1){
                 return $query->result();
             }
         
         }
+
+
+        public function getCatagory() {
+            $this->db->select('c.*, COUNT(b.catagoryid) AS occurrence_count');
+            $this->db->from('catagory c');
+            $this->db->join('blogs b', 'c.cid = b.catagoryid', 'left');
+            $this->db->group_by('c.cid');
+            $this->db->order_by('occurrence_count', 'DESC');
+            $this->db->limit(5);
+        
+            $query = $this->db->get();
+        
+            if ($query->num_rows() >= 1) {
+                return $query->result();
+            } else {
+                return array(); // Return an empty array if no results found
+            }
+        }
+        
+
+
     }
 ?>

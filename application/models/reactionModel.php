@@ -47,14 +47,28 @@
             $this->db->where('blogid',$blogid);
            $likes= $this->db->get('likes');
 
-           if($likes->num_rows()>0){
+           //if($likes->num_rows()>0){
             return $likes->num_rows();
 
-           }
+           //}
 
             
             return '';
         }
+
+        public function CommentCount($blogid){
+            $this->db->where('blogid',$blogid);
+           $likes= $this->db->get('comments');
+
+           //if($likes->num_rows()>0){
+            return $likes->num_rows();
+
+           //}
+
+            
+            return '';
+        }
+
 
 
 
@@ -65,11 +79,25 @@
                 'date'=>date("Y-m-d H:i:s"),
                 'comment'=>$comment
             ];
-            $q=$this->db->insert('likes',$data);
+            $q=$this->db->insert('comments',$data);
             if($q){
                 return TRUE;
             }
             
+        }
+
+        public function getComment($blogid){
+            $this->db->where('blogId',$blogid);
+            $this->db->join('users', 'users.uid = comments.userId');
+            $this->db->order_by('commentId','desc');
+            $comments=$this->db->get('comments');
+
+            if($comments->num_rows()>0){
+                return $comments->result();
+            }
+            else{
+                return array();
+            }
         }
     }
 ?>

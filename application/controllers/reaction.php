@@ -40,18 +40,33 @@ class reaction extends CI_controller{
 
         public function comment(){
             $this->load->library('session');
-            $blog=$this->input->post('blogid');
             $userId= $this->session->userdata('userid');
+          $blog=$this->input->post('blogid');
+          echo"tHIS_IS_USER_VARIABLE".$user=$this->input->post('user')."<br>";
             
-            if($userId){
+            if($user){
               $this->load->library('form_validation') ;
               $this->form_validation->set_rules('comment','Comment','required|alpha_numeric_spaces');
               if($this->form_validation->run()){
                 $comment=$this->input->post('comment');
-                $this->load->model('reactionModel');
-                $cmt=$this->reactionModel('comment');
-
+               
                 
+                if($comment!=''&&$blog!=''&&$user!=''){
+                    echo "IT_IS_SAme_user=".$user."<br>Blog=".$blog."<br>comment=".$comment;
+                
+                    $this->load->model('reactionModel');
+                    $cmt=$this->reactionModel->comment($blog,$this->input->post('user'),$comment);
+
+                    if($cmt){
+                        redirect(base_url('index.php/home/maincontent?blogid=' . $blog));
+                       echo"hekko";
+                }
+                
+              }
+
+           
+              else{
+                echo"can't_validate";
               }
 
               
@@ -61,6 +76,8 @@ class reaction extends CI_controller{
                 $this->load->view('login');
             }
         }
+
+    }
 
 }
 ?>
