@@ -44,7 +44,7 @@ class reaction extends CI_controller{
           $blog=$this->input->post('blogid');
           echo"tHIS_IS_USER_VARIABLE".$user=$this->input->post('user')."<br>";
             
-            if($user){
+            if(1==1){
               $this->load->library('form_validation') ;
               $this->form_validation->set_rules('comment','Comment','required|alpha_numeric_spaces');
               if($this->form_validation->run()){
@@ -60,11 +60,12 @@ class reaction extends CI_controller{
                     if($cmt){
                         redirect(base_url('index.php/home/maincontent?blogid=' . $blog));
                        echo"hekko";
-                }
+                    }
                 
-              }
+                }
+            
 
-           
+              }
               else{
                 echo"can't_validate";
               }
@@ -73,11 +74,12 @@ class reaction extends CI_controller{
            
             }
             else{
-                $this->load->view('login');
+                //$this->load->view('login');
+                redirect('home');
             }
         }
 
-    }
+    
 
 }
 ?>

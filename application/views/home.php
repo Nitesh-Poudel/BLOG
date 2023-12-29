@@ -5,48 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+    <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
+
     <style>
-      .text , .sidebar a, .reaction {color:black}
-      .innerContainer{display:flex;width:100%}
-      .sidebar{width:400%;box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);}
-      .sidebar a{font-size:9px;margin:10px 10px;padding:0px 10px;text-decoration:underline}
-     
-      .contents,.content, nav,.catagoryTable{box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
-      .contents{height:80vh;overflow:scroll}
-
-      .sidebar ul{margin:0px;padding:0px}
-     
-      .container a{ text-decoration: none;}
-     
-      nav a{color:white;margin:0px 50px;}
-
-      .text{height:195px;overflow:hidden;}
-      .text p{color:#1b0101}
-     
-      .reaction{ margin-top:30px; border-top:1px solid gray;}
-
-      .content{ margin:50px 0px;text-align: justify;}
       
-      a{ color:black;}
-      nav a{text-decoration: none;color:white;}
-   
-      a{ color:black;}
-
-      .content:hover{background-color:aliceblue; }
-
-    
-
-      ::-webkit-scrollbar {width: 2px;}
-      ::-webkit-scrollbar-thumb {background: #888;}
-
-
-
-      ::-webkit-scrollbar-thumb:hover {background: #555;}
-
     </style>
   
   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <lnk href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
 </head>
@@ -61,25 +28,34 @@
 <br><br>
 <div class="innerContainer">
 <div class="sidebar">
+  <div class="search"><input id="input" type="text" id="form1" />
+    <button class="btn btn-primary">Search</button>
+  </div>
+   
   <div class="catagoryTable">
     <h6>Catagory</h6>
     <ul type="none">
       <?php foreach ($categories as $category): ?>
-            <li><b><a href="Home?catagory=<?=$category->cid ?>"><?php echo $category->catagory; ?></a></b></li>
+            <div class="catagoryImg"><li> 
+              <a href="Home?catagory=<?= $category->cid ?>">
+                <img src="<?= base_url('/assect/images/catagoryImg/' . $category->cimg) ?>" alt="">
+              </a>
+            <div class="catagoryName"><b><?=$category->catagory?></b></div>
+          </li></div><br>
       <?php endforeach; ?>
         
     </ul>
   </div>
 </div>
 <div class="contents">
-<?php foreach ($contents as $content): ?>
+<?php foreach ($contents as $index => $content): ?>
   <a href="<?= base_url('index.php/home/maincontent?blogid=' . $content->blogid) ?>">
   <div class="content">
     <div class="text">
         <h2><?= $content->title; ?></h2>
 
         
-        <p><?= $content->content; ?></p>
+        <p><?= $lcontents[$index]; ?></p>
     </div>  
     <div class="reaction">
    

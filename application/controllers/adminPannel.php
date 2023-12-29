@@ -12,6 +12,14 @@
                    //$this->load->view('home');
                    redirect('home');
                 }
+
+
+                $config=[
+                    'upload_path'
+                ]
+                $this->load->library('upload',$config);
+
+              
                
             }
           

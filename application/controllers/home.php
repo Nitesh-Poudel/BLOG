@@ -7,7 +7,7 @@
         $this->load->model('loginModel');
         $userDetail = $this->loginModel->userinfo($user);
         if($userDetail){
-            $data = array('userDetail' => $userDetail);
+            $personaldata = array('userDetail' => $userDetail);
             $this->load->model('homeModel');
             $this->load->model('reactionModel');
 
@@ -18,8 +18,30 @@
 
             
             if($contents){
-                $data['contents'] = $contents;
+               /* echo'<pre>';
+                print_r($contents);
+                echo'</pre>';*/
 
+                $limitedContents=[];//its_arrey_to_store_many_contents
+                
+                foreach ($contents as $content) {
+                    $limitedContent = $this->limit_text($content->content); // Process content
+                    $limitedContents[] = $limitedContent; 
+                }
+                
+                //print_r($contents->content);
+                //echo$limitedContents[3];
+                
+               
+                $data['contents'] = $contents;
+                $data['lcontents'] = $limitedContents;
+               
+               
+                echo'<pre>';
+                //print_r($data['contents']);
+               echo'</pre>';
+                //exit();
+                
                 $categoriesData = $this->homeModel->getCatagory(); 
                 
                 if ($categoriesData) {
@@ -59,11 +81,11 @@
 
 
 
-        public function limit_text($text, $limit = 200) {
+        public function limit_text($text, $limit = 100) {
             $words = explode(" ", $text);
             if (count($words) > $limit) {
                 $text = implode(" ", array_slice($words, 0, $limit));
-                $text .= " <a href='#'>See More</a>";
+                $text .= " <p>See More...</p>";
             }
             return $text;
         }

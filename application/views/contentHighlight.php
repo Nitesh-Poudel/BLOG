@@ -5,40 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $result['title']; ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
+
     <style>
-     
-      .contents,.content, .text{box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
-      .container a{
-        text-decoration: none;
-        color:darkred;
-      }
-      nav a{
-        color:black;
-        margin:0px 50px;
-      }
-
-      .content{
-        margin:50px 0px;
-       text-align: justify;
-       }
+      .nav{height:200px}
+      .logo img{height:60px}
+      .content{margin:50px 0px;text-align: justify;}
        button img{width:30px}
-
-      a{ color:black;}
-      .reaction{border-top:1px solid gray;padding-top:20px}
-    button{border:none;background:transparent}
+       a{ color:black;}
+      .reaction{border-top:1px solid gray;padding-top:20px;}
+      .like{display:flex;align-items:center}
+       #like{border:none;background:transparent;cursor: pointer;}
     
     </style>
   
   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link hrf="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
 </head>
 <body>
-  
-<div class="container">
 <?php include_once('header.php');
-echo$user=$_SESSION['userid']?>
+$user=$_SESSION['userid']?> 
+<div class="conntainer">
+
   <div class="content">
     <div class="text">
         <h2><?= $result['title']; ?></h2>
@@ -47,13 +38,16 @@ echo$user=$_SESSION['userid']?>
     </div>
     <div class="reaction">
     <?php echo form_open('reaction/like')?>
-      <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
-       
-      <button type="submit">
-        <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/unlike.png') . '" alt="Unlike Image">'; ?>
-      </button>
 
-      </button><?php echo $likeCount?>
+      <div class="like">
+        <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
+        <button type="submit" id="like">
+          <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
+        </button>
+
+        </button>
+        <?php echo $likeCount?>
+      </div>
       
     <?php echo form_close()?>
 

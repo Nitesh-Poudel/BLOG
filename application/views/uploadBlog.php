@@ -5,56 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload</title>
     <style>
-       
-      .sidebar{width:500px;box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);}
-      .container, nav{box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.2);padding: 20px;}
-      .contents{height:80vh;overflow:scroll}
-
-      .sidebar ul{margin:0px;padding:0px}
-      .sidebar li{padding:20px 5px;}
-      .container a{
-        text-decoration: none;
-        color:darkred;
-      }
-      nav a{
-        color:black;
-        margin:0px 50px;
-      }
-
-      .content{
-        margin:50px 0px;
-        height:150px;
-        overflow:hidden;
-        text-align: justify;
-        
-
-       
-      }
-      #error{font-size:10px;color:red}
-      a{ color:black;}
-     nav a{
-        text-decoration: none;
-        color:white;
-        
-      }
-      a{ color:black;}
-      .content:hover{
-        background-color:aliceblue;
-      }
+      .nav img{height:80px}
+      .container{box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);}
+      textarea{height:100px}
     </style>
-      
+       
+    <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+
 <body>
 
    
-    <div class="container">
+   
     <?php
         include_once('header.php');
     ?>
-   
-
+   <br><br><br>
+   <div class="container">
     <h1>Write_blog</h1>
     <?php echo form_open('Upload/upload')?>
       <input type="text" placeholder="title" id="title"class="form-control" name="title">
@@ -74,6 +43,8 @@
     
       <textarea name="content" id="content"class="form-control"></textarea><br>
       <div id="error"><b><?php echo form_error('content');?></b></div><br>
+
+      <input type="file">
 
 
         <button type="submit"name="post" class="btn btn-primary">Post</button><br>
