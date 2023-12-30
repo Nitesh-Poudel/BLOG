@@ -14,10 +14,7 @@
                 }
 
 
-                $config=[
-                    'upload_path'
-                ]
-                $this->load->library('upload',$config);
+               
 
               
                

@@ -24,7 +24,7 @@
   <div class="links">
       <div class="grp">
       <a href="<?= base_url('index.php/home')?>">Home</a>
-      <a href="<?= base_url('index.php/home')?>">Profile</a>
+      <a href="<?= base_url('index.php/userprofile')?>">Profile</a>
       <a href="<?= base_url('index.php/UPLOAD')?>">Upload</a>
     </div>
     <div class="grp">

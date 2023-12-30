@@ -39,17 +39,18 @@
 
 
         public function mainContent($blogid){
-            $this->db->select('blogs.*, users.fname, users.lname');
+            $this->db->select('blogs.*, users.fname, users.lname, catagory.catagory');
             $this->db->from('blogs');
             $this->db->join('users', 'blogs.userid = users.uid');
+            $this->db->join('catagory', 'blogs.catagoryID = catagory.cid');
             $this->db->where('blogs.blogid', $blogid);
-
+        
             $query = $this->db->get();
-            if($query->num_rows()>=1){
+            if($query->num_rows() >= 1){
                 return $query->row_array();
             }
-        
         }
+        
 
 
 
@@ -71,7 +72,7 @@
             $this->db->join('blogs b', 'c.cid = b.catagoryid', 'left');
             $this->db->group_by('c.cid');
             $this->db->order_by('occurrence_count', 'DESC');
-            $this->db->limit(5);
+            //$this->db->limit(5);
         
             $query = $this->db->get();
         
