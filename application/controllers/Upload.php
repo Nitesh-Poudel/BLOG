@@ -23,10 +23,18 @@
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('title','Title','required|trim',);
                 $this->form_validation->set_rules('content','Content','required');
-                $this->form_validation->set_rules('catagory','catagory','required');
+                $this->form_validation->set_rules('category','category','required');
     
-    
+                $this->load->model('homeModel');
+                $categoriesData = $this->homeModel->getcatagoryForUpload(); 
+
+                if ($categoriesData) {
+                    $data['categories'] = $categoriesData;
+                }
+
                 if($this->form_validation->run()){
+
+
                     $title=$this->input->post('title');
                     $content=$this->input->post('content');
                        
@@ -34,7 +42,7 @@
                         $this->load->helper('paragraph');
                         $cleanedContent=clean_paragraph($content);
     
-                    $category=$this->input->post('catagory');
+                    $category=$this->input->post('category');
                     //echo$title.' '.$content;
     
                     $this->load->model('HomeModel'); // Loads the HomeModel
@@ -45,12 +53,15 @@
     
                 }
                 else{
-                    $this->load->view('uploadBlog');
-                   // redirect('home');
+                    $this->load->view('uploadBlog', $data);
+                    //redirect('upload');
                 }
           
                // echo"hello_hiii_tata_bye";
             }
+
+
+
     
     
         }

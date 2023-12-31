@@ -96,5 +96,29 @@
            }
         }
 
+    
+
+    public function updateContent($blogid,$title,$content,$catagoryId){
+        $data=[
+            'title'=>$title,
+            'catagoryID'=>$catagoryId,
+            'content'=>$content
+        ];
+
+        $this->db->where('blogid', $blogid);
+        $this->db->set($data); 
+        $update=$this->db->update('blogs');
+
+        if($update){
+            return $data;
+        }
+        else{
+            return false;
+        }   
     }
+
+}
+
+
+
 ?>

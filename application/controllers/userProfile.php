@@ -24,6 +24,7 @@
             $this->load->library('session');
             $sessionUserId=$this->session->userdata('userid');
 
+            $data['sessionUserId']= $sessionUserId;
             //echo"userid: ".$userid." session userId : ".$sessionUserId;
             if($userid==$sessionUserId){
                 //echo"can_edit";
@@ -33,6 +34,7 @@
                 //print_r($editable);
 
                 $this->load->view('uploadBlog',$data);
+                //redirect('upload');
 
             }
 
@@ -60,6 +62,55 @@
         }
 
 
+        public function update(){
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('title','Title','required|trim',);
+            $this->form_validation->set_rules('content','Content','required');
+            $this->form_validation->set_rules('category','catagory','required');
+
+
+            if($this->form_validation->run()){
+               
+                $userid= $this->input->post('uid');
+                $blogid= $this->input->post('blogid');
+                $title= $this->input->post('title');
+                $content=$this->input->post('content');
+                $catagory=$this->input->post('category');
+
+ 
+                echo $blogid.' '.$userid.' '.$title.' '.$content.' category='.$catagory;
+                
+                $this->load->library('session');
+                $sessionUserId=$this->session->userdata('userid');
+ 
+                //echo"userid: ".$userid." session userId : ".$sessionUserId;
+                if($userid==$sessionUserId){
+                    $this->load->model('homeModel');
+                    $update=$this->homeModel->updateContent($blogid,$title,$content,$catagory);
+ 
+                    if($update){
+                        //echo $userid."is_updating".$blogid;
+                        //echo "catagory:id=".$catagory."content =".$content;
+                        redirect('userProfile');
+                    }
+                    else{
+                        echo "can't Update";
+                    }
+                }   
+                else{
+                    echo"no-data-found".$sessionUserId." ".$userid;
+                }
+            } 
+            else{
+                echo "cannot_run";
+            }
+        }
+                 
+
+    }
+
+
       
-    }  
+     
 ?>
