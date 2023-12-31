@@ -1,13 +1,13 @@
 <?php 
     class home extends CI_controller{
         public function index(){
-   
-    $user = $this->session->userdata('userid');
-    if ($user) {
+   //comment_outs_are_responsible_to_run_page_only_after_login_which is_not_useable
+    //$user = $this->session->userdata('userid');
+    //if ($user) {
         $this->load->model('loginModel');
-        $userDetail = $this->loginModel->userinfo($user);
-        if($userDetail){
-            $personaldata = array('userDetail' => $userDetail);
+        //$userDetail = $this->loginModel->userinfo($user);
+        //if($userDetail){
+            //$personaldata = array('userDetail' => $userDetail);
             $this->load->model('homeModel');
             $this->load->model('reactionModel');
 
@@ -64,16 +64,16 @@
             }
         
             $this->load->view('home', $data);
-        }
+        //}
 
 
        
 
 
-    } 
-    else {
-        redirect('login');
-    }
+    //} 
+    //else {
+    //    redirect('login');
+    //}
 }
 
 

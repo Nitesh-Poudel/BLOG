@@ -8,8 +8,9 @@
             // Execute the query and get the count of likes
             $query = $this->db->get();
             $likeCount = $query->num_rows(); // Assuming this returns the number of likes
-            
-            return $likeCount;
+            if($likeCount){
+              return $likeCount;
+            }
         }
         
 
@@ -45,15 +46,21 @@
 
         public function likeCount($blogid){
             $this->db->where('blogid',$blogid);
+          
            $likes= $this->db->get('likes');
 
            //if($likes->num_rows()>0){
             return $likes->num_rows();
 
            //}
+         return '';
+        }
 
-            
-            return '';
+        public function doILike($blog,$user){
+            $this->db->where('blogid', $blog);
+            $this->db->where('userid', $user);
+            $dolike=$likes= $this->db->get('likes');
+            return $likes->num_rows();
         }
 
         public function CommentCount($blogid){

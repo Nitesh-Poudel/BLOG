@@ -27,7 +27,7 @@
 </head>
 <body>
 <?php include_once('header.php');
-$user=$_SESSION['userid']?> 
+if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?> 
 <div class="conntainer">
 
   <div class="content">
@@ -42,7 +42,7 @@ $user=$_SESSION['userid']?>
       <div class="like">
         <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
         <button type="submit" id="like">
-          <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
+          <?php echo $likeCount == 1 ? '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Unlike Image">'; ?>
         </button>
 
         </button>
@@ -54,8 +54,12 @@ $user=$_SESSION['userid']?>
     <?php echo form_open('reaction/comment')?>
       <label for="<?= $result['blogid'];  ?>">Comment</label><br>
       <input type="text" class="form-control" name="comment" id="<?= $result['blogid']; ?>">
-      <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
-      <input type="hidden"name="user"value="<?= $user ?>">
+
+      <?php if(isset($_SESSION['userid'])):?>
+        <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
+        <input type="hidden"name="user"value="<?= $user ?>">
+      <?php endif;?>
+
       <button type="submit">Comment</button>
     <?php echo form_close();?>
   </div>

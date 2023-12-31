@@ -1,3 +1,4 @@
+<?php //session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +24,21 @@
   </div>
   <div class="links">
       <div class="grp">
-      <a href="<?= base_url('index.php/home')?>">Home</a>
-      <a href="<?= base_url('index.php/userprofile')?>">Profile</a>
-      <a href="<?= base_url('index.php/UPLOAD')?>">Upload</a>
+       
+        <a href="<?= base_url('index.php/home')?>">Home</a>
+        <?php if(isset($_SESSION['userid'])):?>
+          <a href="<?= base_url('index.php/userprofile')?>">Profile</a>
+          <a href="<?= base_url('index.php/UPLOAD')?>">Upload</a>
+        <?php endif;?>
+        
     </div>
     <div class="grp">
+
+    <?php if(isset($_SESSION['userid'])):?>
       <a href="<?= base_url('index.php/login/logout')?>">logout</a>
+    <?php else:?>
+      <a href="<?= base_url('index.php/login')?>">login</a>
+    <?php endif;?>
     </div>
   </div>
   </nav>

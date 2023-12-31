@@ -2,7 +2,9 @@
 class reaction extends CI_controller{
 
 
-        //public function index(){}
+        public function index(){
+           
+        }
 
         public function like(){
             $this->load->library('session');
