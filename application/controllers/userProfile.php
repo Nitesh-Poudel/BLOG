@@ -40,6 +40,23 @@
 
         public function delete(){
             echo"lets_delete";
+            $userid= $this->input->post('uid');
+           $blogid= $this->input->post('blogid');
+
+          // echo$blogid;exit();
+            $this->load->library('session');
+            $sessionUserId=$this->session->userdata('userid');
+
+            //echo"userid: ".$userid." session userId : ".$sessionUserId;
+            if($userid==$sessionUserId){
+                //echo"can_edit";
+                $this->load->model('homeModel');
+                $delete=$this->homeModel->deleteContent($blogid);
+
+                
+                echo$delete;
+                redirect('userProfile');
+            }
         }
 
 

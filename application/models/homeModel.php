@@ -85,5 +85,16 @@
         
 
 
+        public function deleteContent($blogid){
+            $this->db->where('blogid',$blogid);
+           $delete= $this->db->delete('blogs');
+           if($delete){
+            return true;
+           }
+           else{
+            return false;
+           }
+        }
+
     }
 ?>
