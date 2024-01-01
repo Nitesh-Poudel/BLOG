@@ -1,5 +1,9 @@
 <?php
     class adminPannel extends CI_controller{
+
+            public function index(){
+                echo"this_is_admin";
+            }
       
             public function admin(){
 

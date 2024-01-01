@@ -8,6 +8,9 @@
     <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
 
     <style>
+      .reaction{display:flex;justify-content:space-between;align-items:center}
+      button{border:none;background:transparent;}
+      button img{width:20px}
       
     </style>
   
@@ -28,8 +31,11 @@
 <br><br>
 <div class="innerContainer">
 <div class="sidebar">
-  <div class="search"><input id="input" type="text" id="form1" />
-    <button class="btn btn-primary">Search</button>
+  <div class="search">
+    <?=form_open("home");?>
+      <input id="input" type="text" id="form1" />
+      <button class="btn btn-primary">Search</button>
+    <?=form_close();?>
   </div>
    
   <div class="catagoryTable">
@@ -59,7 +65,8 @@
     </div>  
     <div class="reaction">
    
-    <h6>    <?php echo $likeCount[$content->blogid]; ?> Likes   <?php echo $CommentCount[$content->blogid]; ?> Comments   <?= rand(100, 1000); ?> Views</h6>
+    <div><h6>    <?php echo $likeCount[$content->blogid]; ?> Likes   <?php echo $CommentCount[$content->blogid]; ?> Comments   <?= rand(100, 1000); ?> Views</h6></div></a>
+    <div><h6><button type="submit"> <?php echo'<img src="' . base_url('/assect/images/systemImg/share.png') . '" >'?></button></h6></div>
    
     </div>
   </div>

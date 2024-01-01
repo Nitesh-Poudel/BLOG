@@ -42,7 +42,7 @@ if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?>
       <div class="like">
         <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
         <button type="submit" id="like">
-          <?php echo $likeCount == 1 ? '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Unlike Image">'; ?>
+          <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
         </button>
 
         </button>

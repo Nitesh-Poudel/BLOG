@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     .container{width:100%;height:80vh;}
+    .sidebar img{width:90px}
+    .sidebar .intro{display:flex;line-height: 0.1;align-items:center;margin:10px 0px;border-bottom:1px solid gray}
+    .sidebar .linkss{line-height:0;}
+    .sidebar .linkss a{color:black;font-size:16px}
     .innercontainer{width:100%;height:90vh;}
     .conttent{width:90%;height:80vh;background-color:blu;overflow:scroll;margin:20px 0px;background-color:;box-shadow:none;}
     .shortcontent-tasks{background-color:old;padding:10px;box-shadow: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);}
@@ -32,14 +36,31 @@
    
     <div class="innercontainer">
       <div class="sidebar">
-        <h2><?php echo $userdata->fname." ".$userdata->lname;?></h2>
-        <h3><?php ?></h3>
-        <?php echo $userdata->email?>
+
+        <div class="intro">
+          <div>
+            <?php echo'<img src="' . base_url('/assect/images/systemImg/profile.png') . '" >'?>
+          </div>
+          <div>
+            <h2><?php echo $userdata->fname." ".$userdata->lname;?></h2>
+            <?php echo $userdata->email?>
+          </div>
+          
+        </div>
+
+        <div class="linkss">
+          <ul type="none">
+            <li><a href="#"><h5>My Contents</h5></a></li>
+            <li><a href="#"><h5>Saved</h5></a></li>
+            <li><a href="#"><h5>Setting</h5></a></li>
+          </ul>
+        </div>
+      
     </div>
       <div class="right">
    
         <div class="conttent">
-          
+          <h1>Uploaded Contents</h1>
          
         <?php if(isset($userUplodeddata) && (is_array($userUplodeddata) || is_object($userUplodeddata))): ?>
 

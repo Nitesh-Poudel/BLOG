@@ -71,7 +71,7 @@
         <?= $is_edit ? 'Update' : 'Post' ?>
       </button>
 
-
+    
       <?php echo form_close()?>
     </div>
 </body>

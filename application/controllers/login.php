@@ -48,8 +48,7 @@ class login extends CI_controller{
                 //session_creatipn
                 $this->load->library('session');//loaded_session_library_file
                 $this->session->set_userdata('userid', $user);
-
-			
+               
                 redirect('home');
             }
             else {
