@@ -12,6 +12,7 @@
     .container{width:100%;height:80vh;}
     .sidebar img{width:90px}
     .sidebar .intro{display:flex;line-height: 0.1;align-items:center;margin:10px 0px;border-bottom:1px solid gray}
+    .sidebar .intro h2{font-size:100%}
     .sidebar .linkss{line-height:0;}
     .sidebar .linkss a{color:black;font-size:16px}
     .innercontainer{width:100%;height:90vh;}

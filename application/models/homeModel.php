@@ -39,7 +39,7 @@
 
 
         public function mainContent($blogid){
-            $this->db->select('blogs.*, users.fname, users.lname, catagory.catagory');
+            $this->db->select('blogs.*, users.fname, users.lname,users.uid, catagory.catagory');
             $this->db->from('blogs');
             $this->db->join('users', 'blogs.userid = users.uid');
             $this->db->join('catagory', 'blogs.catagoryID = catagory.cid');

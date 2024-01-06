@@ -1,16 +1,23 @@
 <?php 
-    class home extends CI_controller{
-        public function index(){
-   //comment_outs_are_responsible_to_run_page_only_after_login_which is_not_useable
-    //$user = $this->session->userdata('userid');
-    //if ($user) {
-        $this->load->model('loginModel');
-        //$userDetail = $this->loginModel->userinfo($user);
-        //if($userDetail){
-            //$personaldata = array('userDetail' => $userDetail);
+    class home extends My_controller{
+        
+        public function __construct() {
+            parent::__construct();
+            //$this->load->model('loginModel');
             $this->load->model('homeModel');
             $this->load->model('reactionModel');
+            $this->load->model('notificationModel');
+            $this->load->library('session');
+        }
+    
 
+        public function index(){
+
+            
+            $user=$this->session->userdata('userid');
+
+            $data['notifications'] = $this->notificationModel->showNotification($user); // Call the method showNotification from notificationModel
+            
             $category = $this->input->get('catagory'); // Using CodeIgniter's input class for better security
             $contents = $this->homeModel->showContent($category);
             
@@ -18,30 +25,17 @@
 
             
             if($contents){
-               /* echo'<pre>';
-                print_r($contents);
-                echo'</pre>';*/
-
+           
                 $limitedContents=[];//its_arrey_to_store_many_contents
                 
                 foreach ($contents as $content) {
                     $limitedContent = $this->limit_text($content->content); // Process content
                     $limitedContents[] = $limitedContent; 
                 }
-                
-                //print_r($contents->content);
-                //echo$limitedContents[3];
-                
+             
                
                 $data['contents'] = $contents;
                 $data['lcontents'] = $limitedContents;
-               
-               
-                echo'<pre>';
-                //print_r($data['contents']);
-               echo'</pre>';
-                //exit();
-                
                 $categoriesData = $this->homeModel->getCatagory(); 
                 
                 if ($categoriesData) {
@@ -51,6 +45,8 @@
                     echo"no-data_availabel";
                 }
             }
+
+
             //get_like_and_comment_count
           
             foreach ($contents as $content) {
@@ -67,51 +63,38 @@
         //}
 
 
-       
+ 
+    }
 
-
-    //} 
-    //else {
-    //    redirect('login');
-    //}
-}
-
-
-        
-
-
-
-        public function limit_text($text, $limit = 100) {
-            $words = explode(" ", $text);
-            if (count($words) > $limit) {
-                $text = implode(" ", array_slice($words, 0, $limit));
-                $text .= " <p>See More...</p>";
-            }
-            return $text;
+     function limit_text($text, $limit = 100) {
+        $words = explode(" ", $text);
+        if (count($words) > $limit) {
+            $text = implode(" ", array_slice($words, 0, $limit));
+            $text .= " <p>See More...</p>";
         }
+        return $text;
+    }
 
         
+    
+    public function maincontent(){
+        $this->load->library('session');
+        $user=$this->session->userdata('userid');
 
-
+        $content['notifications'] = $this->notificationModel->showNotification($user); // Call the method showNotification from notificationModel
+       
+        $blogid = $this->input->get('blogid');
+    
+        $content['result']=$this->homeModel->mainContent($blogid);
+    
+        $this->load->model('reactionModel');
+        $content['likeCount'] = $this->reactionModel->LikeCount($blogid);
+        $content['getComment']=$this->reactionModel->getComment($blogid);
+        
       
-
-        public function maincontent(){
-            
-            
-            $blogid = $this->input->get('blogid');
-            $this->load->model('homeModel');
-            $content['result']=$this->homeModel->mainContent($blogid);
+        $this->load->view('contentHighlight',$content);
         
-            $this->load->model('reactionModel');
-            $content['likeCount'] = $this->reactionModel->LikeCount($blogid);
-
-
-            $content['getComment']=$this->reactionModel->getComment($blogid);
-            
-          
-            $this->load->view('contentHighlight',$content);
-            
-        }   
+    }   
            
 
     }

@@ -2,6 +2,8 @@
     class signin extends CI_controller{
 
         public function index(){
+            
+
             $this->load->view('signin');
         }
 
@@ -18,8 +20,8 @@
             
     
             if($this->form_validation->run()){
-                $fname=$this->input->post('fname');
-                $lname=$this->input->post('lname');
+                $fname=ucwords($this->input->post('fname'));
+                $lname=ucwords($this->input->post('lname'));
                 $email=$this->input->post('email');
                 $password=md5($this->input->post('password'));
                 $cpassword=md5($this->input->post('cpassword'));

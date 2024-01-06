@@ -34,12 +34,14 @@ if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?>
     <div class="text">
         <h2><?= $result['title']; ?></h2>
         <p><?= $result['content']; ?></p>
-        <h6><b><a href="<?=base_url('/application/controllers/userProfile')?>">Author :- <?= $result['fname']; ?></a></b></h6>
+        <h6><b><a href="<?=base_url('/application/controllers/userProfile')?>">Author :- <?= $result['fname']; ?><?= $result['uid']; ?>
+        </a></b></h6>
     </div>
     <div class="reaction">
     <?php echo form_open('reaction/like')?>
 
       <div class="like">
+        <input type="hidden"name="author" value=" <?= $result['uid']; ?>">
         <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
         <button type="submit" id="like">
           <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
@@ -56,6 +58,7 @@ if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?>
       <input type="text" class="form-control" name="comment" id="<?= $result['blogid']; ?>">
 
       <?php if(isset($_SESSION['userid'])):?>
+        <input type="hidden" name="author"value=" <?= $result['uid']; ?>">
         <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
         <input type="hidden"name="user"value="<?= $user ?>">
       <?php endif;?>

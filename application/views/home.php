@@ -24,7 +24,7 @@
   
 <div class="container">
 
-<?php include_once('header.php');?>
+<?php include_once('header.php')  ?>
   
 
 
@@ -66,7 +66,12 @@
     <div class="reaction">
    
     <div><h6>    <?php echo $likeCount[$content->blogid]; ?> Likes   <?php echo $CommentCount[$content->blogid]; ?> Comments   <?= rand(100, 1000); ?> Views</h6></div></a>
-    <div><h6><button type="submit"> <?php echo'<img src="' . base_url('/assect/images/systemImg/share.png') . '" >'?></button></h6></div>
+    <div class=dropdownParent><h6><button type="submit"> <?php echo'<img src="' . base_url('/assect/images/systemImg/dots.png') . '" >'?></button></h6>
+      <div class="dropdown">
+        <div><button type="submit">Save</button></div>
+        <div><a href="#">Report</a></div>
+      </div>
+    </div>
    
     </div>
   </div>

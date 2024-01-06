@@ -1,9 +1,16 @@
 <?php
-    class userProfile extends CI_controller{
+    class userProfile extends My_controller{
+
+        public function __construct(){
+            parent::__construct();
+            $this->load->model('userinfoModel');
+            $this->load->library('session');
+
+        }
         public function index(){
             $data = $this->session->userdata('userid');
           
-            $this->load->model('userinfoModel');
+          
 
             $userdata['userdata']=$this->userinfoModel->index($data);
            
@@ -21,7 +28,7 @@
            $blogid= $this->input->post('blogid');
 
           // echo$blogid;exit();
-            $this->load->library('session');
+         
             $sessionUserId=$this->session->userdata('userid');
 
             $data['sessionUserId']= $sessionUserId;
@@ -46,7 +53,7 @@
            $blogid= $this->input->post('blogid');
 
           // echo$blogid;exit();
-            $this->load->library('session');
+        
             $sessionUserId=$this->session->userdata('userid');
 
             //echo"userid: ".$userid." session userId : ".$sessionUserId;
@@ -55,8 +62,6 @@
                 $this->load->model('homeModel');
                 $delete=$this->homeModel->deleteContent($blogid);
 
-                
-                echo$delete;
                 redirect('userProfile');
             }
         }
@@ -86,7 +91,7 @@
  
                 //echo"userid: ".$userid." session userId : ".$sessionUserId;
                 if($userid==$sessionUserId){
-                    $this->load->model('homeModel');
+                 
                     $update=$this->homeModel->updateContent($blogid,$title,$content,$catagory);
  
                     if($update){

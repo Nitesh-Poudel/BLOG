@@ -13,6 +13,9 @@
 
      
             //$this->load->library('database');//this_can_be_include_in_auto_load
+          
+
+            
             $q=$this->db->insert('users',$data);//active_record_user
             if($q){
                 return true;

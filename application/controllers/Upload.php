@@ -1,5 +1,5 @@
 <?php
-    class Upload extends CI_controller{
+    class Upload extends My_controller{
         public function index(){
            $this->load->model('homeModel');
             $categoriesData = $this->homeModel->getcatagoryForUpload(); 
