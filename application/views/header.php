@@ -28,7 +28,10 @@
 .notification:hovejr .notification-list{display:block}
 
 .status{cursor:pointer;position:absolute;top:-5px;right:-5px;background-color:red;width:16px;text-align:center;border-radius:50%}
-.notification-list{position:absolute;top:25px;left:-50px;width:300px;height:200px;overflow-y:scroll;overflow-x:hidden;line-height;border:1px solid gray;display:none}
+.notification-list{position:absolute;top:25px;left:-50px;width:300px;height:200px;overflow-y:scroll;overflow-x:hidden;line-height;border:1px solid gray;display:none;box-shadow: 1px 5px 13px 3px rgba(0, 0, 0, 1);
+  background-color:white;
+}
+.notificatin-list h6{margin:0px;padding:0px}
 .notification-list table {
   width: 100%;
   border-collapse: collapse;
@@ -45,7 +48,9 @@
   color:Black;
 }
 #notifincation{ padding:5px;background-color:green}
-#notificnation-list{background-color:blue}
+#notificnation-list{background-color:blue;
+  box-shadow: 15px 15px 15px 10px rgba(0, 0, 0, 1);
+}
 table tr.seen0{background-color:aliceblue;}
 table tr .seen1{background-color:white;}
 </style>
@@ -73,7 +78,7 @@ table tr .seen1{background-color:white;}
               <?php foreach($notifications as $notification):?>
                <tr class="seen<?= $notification['seen']?>">
                 <a href="#"><td><b><?= $notification['fname']. $notification['lname']?></b> <?=$notification['notification']?> your blog<br>
-                    <?=$notification['title']?>
+                    <?=$notification['title']?><h6><?=$notification['date']?></h6>
                   </td></a>
                 </tr>
                 <?php //print_r($notifications)

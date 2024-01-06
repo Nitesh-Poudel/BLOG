@@ -24,7 +24,6 @@
   
 <div class="container">
 
-<?php include_once('header.php')  ?>
   
 
 
@@ -66,13 +65,21 @@
     <div class="reaction">
    
     <div><h6>    <?php echo $likeCount[$content->blogid]; ?> Likes   <?php echo $CommentCount[$content->blogid]; ?> Comments   <?= rand(100, 1000); ?> Views</h6></div></a>
+    
+    <?php if(isset($_SESSION['userid'])):?>
     <div class=dropdownParent><h6><button type="submit"> <?php echo'<img src="' . base_url('/assect/images/systemImg/dots.png') . '" >'?></button></h6>
       <div class="dropdown">
-        <div><button type="submit">Save</button></div>
-        <div><a href="#">Report</a></div>
+        <?= form_open('home/save')?>
+          <div><button type="submit">Save</button></div>
+          <input type="hidden" name="blogid" value="<?=$content->blogid?>">
+          <input type="hidden" name="blog" value="">
+         
+          <div><a href="#">Report</a></div>
+        <?= form_close()?>
+
       </div>
     </div>
-   
+   <?php endif;?>
     </div>
   </div>
 <?php endforeach; ?>

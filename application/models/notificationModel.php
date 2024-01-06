@@ -48,9 +48,11 @@
             $this->db->join('users u', 'u.uid = n.notificationFrom'); // Joining with blogs table and aliasing it as 'b'
             
             $this->db->where('n.notificationTo', $user);
-            //$this->db->where('n.notificationFrom', $user);
+            $this->db->where('n.notificationFrom !=', $user);
+           
+            $this->db->order_by('notificationId', 'desc'); // Order by notification ID in descending order
+   
             $notifications = $this->db->get();
-            
             return $notifications->result_array(); // Assuming this returns an array of notification objects with blogTitle included
         }
 
@@ -58,6 +60,7 @@
         public function countNotification($user){
             $this->db->from('notification');
             $this->db->where('notificationTo', $user);
+            $this->db->where('notificationFrom !=', $user);
             $this->db->where('seen', 0); // Assuming 'seen' is a column indicating whether the notification is seen or not
             
             return $this->db->count_all_results(); // Returns the count of notifications that match the criteria

@@ -1,6 +1,6 @@
 <?php 
     class home extends My_controller{
-        
+       
         public function __construct() {
             parent::__construct();
             //$this->load->model('loginModel');
@@ -10,12 +10,13 @@
             $this->load->library('session');
         }
     
+       
 
         public function index(){
 
-            
             $user=$this->session->userdata('userid');
 
+           
             $data['notifications'] = $this->notificationModel->showNotification($user); // Call the method showNotification from notificationModel
             
             $category = $this->input->get('catagory'); // Using CodeIgniter's input class for better security
@@ -58,7 +59,10 @@
                 
                 // Rest of your code...
             }
-        
+            //echo'<pre>';
+           // print_r($data);
+            //exit()
+            $this->load->view('header', $data);
             $this->load->view('home', $data);
         //}
 
@@ -90,10 +94,22 @@
         $this->load->model('reactionModel');
         $content['likeCount'] = $this->reactionModel->LikeCount($blogid);
         $content['getComment']=$this->reactionModel->getComment($blogid);
-        
+        $content['doILike']=$this->reactionModel->doILike($blogid,$user);
       
         $this->load->view('contentHighlight',$content);
         
+    }   
+
+
+
+    public function save(){
+       $user=$this->session->userdata('userid');
+        $blogid=$this->input->post('blogid');
+
+        $this->load->model('home');
+
+
+       
     }   
            
 

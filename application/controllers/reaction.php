@@ -46,6 +46,8 @@ class reaction extends CI_controller{
            
         }
 
+    
+
 
         public function comment(){
             $this->load->library('session');

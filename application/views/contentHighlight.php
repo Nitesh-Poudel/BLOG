@@ -44,7 +44,7 @@ if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?>
         <input type="hidden"name="author" value=" <?= $result['uid']; ?>">
         <input type="hidden"name="blogid"value="<?= $result['blogid']; ?>">
         <button type="submit" id="like">
-          <?php echo $likeCount == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
+          <?php echo $doILike == 0 ? '<img src="' . base_url('/assect/images/systemImg/like.png') . '" alt="Like Image">' : '<img src="' . base_url('/assect/images/systemImg/unlike.png') . '" alt="Unlike Image">'; ?>
         </button>
 
         </button>
