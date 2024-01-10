@@ -51,8 +51,8 @@
 
         <div class="linkss">
           <ul type="none">
-            <li><a href="#"><h5>My Contents</h5></a></li>
-            <li><a href="#"><h5>Saved</h5></a></li>
+            <li><a href="<?=base_url('index.php/userProfile')?>"><h5>My Contents</h5></a></li>
+            <li><a href="<?=base_url('index.php/userProfile/saved')?>"><h5>Saved</h5></a></li>
             <li><a href="#"><h5>Setting</h5></a></li>
           </ul>
         </div>
@@ -61,11 +61,12 @@
       <div class="right">
    
         <div class="conttent">
-          <h1>Uploaded Contents</h1>
-         
-        <?php if(isset($userUplodeddata) && (is_array($userUplodeddata) || is_object($userUplodeddata))): ?>
+          <h1><?=isset($userUploadeddata)?'Uploaded Contents':'Saved Content';?></h1>
+          <?php if (isset($userUploadeddata) || isset($userSaveddata)): ?>
+            <?php $data = isset($userUploadeddata) ? $userUploadeddata : $userSaveddata; ?>
+       
 
-            <?php foreach ($userUplodeddata as $content): ?>
+            <?php foreach ($data as $content): ?>
               <div class="shortcontent-tasks">
                 <a href="<?= base_url('index.php/home/maincontent?blogid=' . $content->blogid) ?>"><div class="shortcontent">
                     <h2><?php echo $content->title; ?></h2><br>
@@ -73,8 +74,11 @@
                     <!-- Display other relevant properties -->
                 </div></a>
                <div class="tasks">
-                
-               <?= form_open('userprofile/edit');?>
+
+               
+
+              <?php if(isset($userUploadeddata)):?>
+                <?= form_open('userprofile/edit');?>
                   <input type="hidden" value="<?= $content->blogid;?>" name="blogid">
                   <input type="hidden"value="<?=$userdata->uid?>"name="uid">
                 
@@ -90,6 +94,8 @@
                     <?php echo '<img src="' . base_url('/assect/images/systemImg/delete.png') . '">'; ?>
                   </button>
                 <?= form_close();?>
+              <?php endif;?>
+
 
 
                </div> 

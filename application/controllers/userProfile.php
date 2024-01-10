@@ -14,7 +14,7 @@
 
             $userdata['userdata']=$this->userinfoModel->index($data);
            
-            $userdata['userUplodeddata']=$this->userinfoModel->uploadedcontent($data);
+            $userdata['userUploadeddata']=$this->userinfoModel->getContent($data);
          
             //print_r($userdata);
             $this->load->view('userProfile',$userdata);
@@ -110,6 +110,16 @@
             else{
                 echo "cannot_run";
             }
+        }
+
+
+        public function saved(){
+           $data = $this->session->userdata('userid');
+            $userdata['userdata']=$this->userinfoModel->index($data);
+            $userdata['userSaveddata']=$this->userinfoModel->getContent($data,'saved');
+
+
+            $this->load->view('userProfile',$userdata);
         }
                  
 

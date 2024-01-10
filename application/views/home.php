@@ -69,7 +69,7 @@
     <?php if(isset($_SESSION['userid'])):?>
     <div class=dropdownParent><h6><button type="submit"> <?php echo'<img src="' . base_url('/assect/images/systemImg/dots.png') . '" >'?></button></h6>
       <div class="dropdown">
-        <?= form_open('home/save')?>
+        <?= form_open('home/savePost')?>
           <div><button type="submit">Save</button></div>
           <input type="hidden" name="blogid" value="<?=$content->blogid?>">
           <input type="hidden" name="blog" value="">

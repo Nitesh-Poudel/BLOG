@@ -102,11 +102,13 @@
 
 
 
-    public function save(){
+    public function savePost(){
        $user=$this->session->userdata('userid');
         $blogid=$this->input->post('blogid');
 
-        $this->load->model('home');
+        $this->load->model('homeModel');
+        $isSave=$this->homeModel->savePost($user,$blogid);
+
 
 
        
