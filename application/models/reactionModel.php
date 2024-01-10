@@ -1,5 +1,5 @@
 <?php
-    class reactionModel extends CI_model{
+    class reactionModel extends createTableModel{
         public function CheckLike($blogId, $userId) {
             $this->db->from('likes');
             $this->db->where('likes.blogid', $blogId);
@@ -18,6 +18,10 @@
 
 
         public function like($blog,$user){
+            if (!$this->db->table_exists('likes')) {
+                $createTable=new createTableModel();
+                $createTable->createLikesTable();
+             }
             $data=[
                 'blogid'=>$blog,
                 'userid'=>$user,
@@ -80,6 +84,10 @@
 
 
         public function comment($blog,$user,$comment){
+            if (!$this->db->table_exists('comments')) {
+                $createTable=new createTableModel();
+                $createTable->createCommentsTable();
+             }
             $data=[
                 'blogid'=>$blog,
                 'userid'=>$user,

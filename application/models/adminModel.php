@@ -1,6 +1,10 @@
 <?php
-    class adminModel extends CI_model{
+    class adminModel extends createTableModel{
         public function addCatagory($catagory){
+            if(!$this->db->table_exists('catagory')){
+                $createTable=new createTableModel();
+                $createTable->createCatagoryTable();
+            }
             $data=[
                 "catagory"=>$catagory
             ];

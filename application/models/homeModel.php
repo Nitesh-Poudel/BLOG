@@ -1,6 +1,17 @@
 <?php
-    class homeModel extends CI_Model{
+    class homeModel extends createTableModel{
+        private $createTable;
+        public function __construct() {
+            //$this->load->model('createTableModel'); // Load the createTableModel-loader_in_autoload
+
+            parent::__construct();
+            $this->createTable= new CreateTableModel(); 
+        }
+
         public function uploadBlog($title,$content,$category){
+            if (!$this->db->table_exists('blogs')) {
+                $this->createTable->createBlogsTable();
+             }
             $data=[
                 'title'=>$title,
                 'content'=>$content,
@@ -14,9 +25,7 @@
             if($q){
                 return true;
             }
-    
         }
-
 
         public function showContent($category){
             $this->db->select('blogs.*, users.fname, users.lname');
@@ -122,6 +131,10 @@
 
     //to_save_post_for_future:
         public function savePost($userid, $blogid){
+
+            if (!$this->db->table_exists('save')) {
+                $this->createTable->createSaveTable();
+            }
             $data=[
                 'userid'=>$userid,
                 'blogid'=>$blogid,
@@ -131,11 +144,10 @@
             if($q){
                 return true;
             }
-    
-
-
-
         }
+
+       
+
 
 }
 

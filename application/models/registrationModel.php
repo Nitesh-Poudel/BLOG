@@ -1,8 +1,12 @@
 <?php
-    class registrationModel extends CI_Model{
+    class registrationModel extends createTableModel{
         public function register($fname,$lname,$email,$gender,$password){
 
             //$this->load->library('database');//this_can_be_include_in_auto_load
+                if(!$this->db->table_exists('users')){
+                $createTable=new createTableModel();
+                $createTable->createUsersTable();
+            }
            $data=[
             'fname'=>$fname,
             'lname'=>$lname,
