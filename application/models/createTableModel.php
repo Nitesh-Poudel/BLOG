@@ -3,10 +3,32 @@ class createTableModel extends CI_Model{
         public function __construct(){
         parent::__construct();
         $this->load->dbforge(); // Load dbforge library
+        if(!$this->db->table_exists('notification')){
+            $this->createNotificationTable();
+        }
+        if(!$this->db->table_exists('blogs')){
+            $this->createBlogsTable();
+        }
+        if(!$this->db->table_exists('likes')){
+            $this->createLikesTable();
+        }
+        if(!$this->db->table_exists('comments')){
+            $this->createCommentsTable();
+        }
+        if(!$this->db->table_exists('save')){
+            $this->createSaveTable();
+        }
+        if(!$this->db->table_exists('users')){
+            $this->createCommentsTable();
+        }
+        if(!$this->db->table_exists('catagory')){
+            $this->createCommentsTable();
+        }
+
     }
 
     protected function createBlogsTable(){
-        $fileds=[
+        $fields=[
             'blogid'=>[
                 'type' => 'INT',
                 'constraint' => 11,
@@ -167,14 +189,14 @@ class createTableModel extends CI_Model{
             ],
             'catagory'=>[
                 'type'=>'VARCHAR',
-                'constrant'=>100,
+                'constraint'=>100,
                 'unique'=>true
 
             ],
             'cimg'=>[
                 'type'=>'VARCHAR',
-                'constrant'=>100,
-                'unique'=>true
+                'constraint'=>100,
+                //'unique'=>true
             ]
         ];
 
@@ -271,8 +293,8 @@ class createTableModel extends CI_Model{
             ];
 
             $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('likeid', true); // Set primary key
-            $this->dbforge->create_table('likes', true); // Create 'users' table
+            $this->dbforge->add_key('notificationId', true); // Set primary key
+            $this->dbforge->create_table('notification', true); // Create 'users' table
        
 
     }

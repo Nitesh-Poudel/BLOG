@@ -9,7 +9,7 @@
 
         public function registration_validation(){
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[users.email]');
+            $this->form_validation->set_rules('email','Email','required|valid_email');
             $this->form_validation->set_rules('password','Password','required|min_length[8]');
             $this->form_validation->set_rules('fname','First Name','required|trim|alpha');
             $this->form_validation->set_rules('lname','Last Name','required|trim|alpha');

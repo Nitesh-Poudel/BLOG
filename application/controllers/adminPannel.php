@@ -29,7 +29,7 @@
 
         public function validate(){
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('newCatagory','Catagory','required|trim|is_unique[catagory.catagory]');
+            $this->form_validation->set_rules('newCatagory','Catagory','required|trim');
             if($this->form_validation->run()){
                 $catagory=ucwords($this->input->post('newCatagory'));
                 

@@ -62,6 +62,8 @@
             //echo'<pre>';
            // print_r($data);
             //exit()
+
+          
             $this->load->view('header', $data);
             $this->load->view('home', $data);
         //}
@@ -108,10 +110,7 @@
 
         $this->load->model('homeModel');
         $isSave=$this->homeModel->savePost($user,$blogid);
-
-
-
-       
+        redirect('home');
     }   
            
 

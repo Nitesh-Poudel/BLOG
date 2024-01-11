@@ -6,7 +6,8 @@
                 $createTable->createCatagoryTable();
             }
             $data=[
-                "catagory"=>$catagory
+                "catagory"=>$catagory,
+                "cimg"=>rand(00000000,99999999999),
             ];
 
             $query=$this->db->insert('catagory',$data);

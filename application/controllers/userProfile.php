@@ -5,7 +5,7 @@
             parent::__construct();
             $this->load->model('userinfoModel');
             $this->load->library('session');
-
+            $this->load->model('homeModel');
         }
         public function index(){
             $data = $this->session->userdata('userid');
@@ -85,10 +85,10 @@
 
  
                 echo $blogid.' '.$userid.' '.$title.' '.$content.' category='.$catagory;
-                
+             
                 $this->load->library('session');
-                $sessionUserId=$this->session->userdata('userid');
- 
+               $sessionUserId=$this->session->userdata('userid');
+
                 //echo"userid: ".$userid." session userId : ".$sessionUserId;
                 if($userid==$sessionUserId){
                  
@@ -97,7 +97,7 @@
                     if($update){
                         //echo $userid."is_updating".$blogid;
                         //echo "catagory:id=".$catagory."content =".$content;
-                        redirect('userProfile');
+                       redirect('userProfile');
                     }
                     else{
                         echo "can't Update";

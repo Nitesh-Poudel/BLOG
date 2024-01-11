@@ -130,26 +130,29 @@
 
 
     //to_save_post_for_future:
-        public function savePost($userid, $blogid){
-
-            if (!$this->db->table_exists('save')) {
-                $this->createTable->createSaveTable();
+        public function savePost($userid, $blogid) {
+          
+                 $existingRecord = $this->db
+                ->where('userid', $userid)
+                ->where('blogid', $blogid)
+                ->get('save')
+                ->row();
+        
+              if ($existingRecord) {
+                return false;
             }
-            $data=[
-                'userid'=>$userid,
-                'blogid'=>$blogid,
-                'date'=>date("Y-m-d H:i:s")
+            $data = [
+                'userid' => $userid,
+                'blogid' => $blogid,
+                'date'   => date("Y-m-d H:i:s")
             ];
-            $q=$this->db->insert('save',$data);//active_record_user
-            if($q){
-                return true;
-            }
+        
+            $q = $this->db->insert('save', $data);
+        
+            return $q ? true : false;
         }
-
-       
-
-
-}
+     
+    }
 
 
 
