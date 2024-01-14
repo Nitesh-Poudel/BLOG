@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
+  <link rel="stylesheet"a href="<?= base_url('/assect/stylemainStyle.css') ?>">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <style>
  
  .links{display:flex;justify-content: space-between;width:80%;align-items:flex-end;}
@@ -119,37 +121,63 @@ table tr .seen1{background-color:white;}
   </nav>
 
   <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let notification = document.getElementById("notification");
-            let notify = document.getElementById("notification-list");
-            let isNotificationVisible = false;
-
-
-          
-           
-            // Add click event listener to the notification trigger
-            notification.addEventListener('click', function (event) {
-                event.stopPropagation(); // Prevents the click event from propagating to the document
-                if (!isNotificationVisible) {
-                    notify.style.display = 'block';
-                    isNotificationVisible = true;
-                    updateDatabase();
-
-                } else {
-                    notify.style.display = 'none';
-                    isNotificationVisible = false;
-                }
-            });
-
-            // Add click event listener to the document to hide the notification when clicking anywhere outside it
-            document.addEventListener('click', function () {
-                if (isNotificationVisible) {
-                    notify.style.display = 'none';
-                    isNotificationVisible = false;
-                }
-            });
+      document.addEventListener('DOMContentLoaded', function () {
+          let notification = document.getElementById("notification");
+          let notify = document.getElementById("notification-list");
+          let isNotificationVisible = false;
+        
+         
+          // Add click event listener to the notification trigger
+          notification.addEventListener('click', function (event) {
+              event.stopPropagation(); // Prevents the click event from propagating to the document
+              if (!isNotificationVisible) {
+                  notify.style.display = 'block';
+                  isNotificationVisible = true;
+                  updateDatabase();
+              } else {
+                  notify.style.display = 'none';
+                  isNotificationVisible = false;
+              }
+          });
+          // Add click event listener to the document to hide the notification when clicking anywhere outside it
+          document.addEventListener('click', function () {
+              if (isNotificationVisible) {
+                  notify.style.display = 'none';
+                  isNotificationVisible = false;
+              }
+          });
         });
-    </script>
+      
+        function updateDatabase() {
+          console.log("Before AJAX request");
+
+$.ajax({
+    type: "POST",
+    url: "<?= base_url('index.php/notification') ?>",
+    data: { id: <?=$_SESSION['userid']?> },
+    success: function (response) {
+        console.log("AJAX request successful");
+        console.log(response);  // Check the response in the console
+
+        // Check if there is a redirect URL in the response
+        if (response.redirectUrl) {
+            console.log("Redirecting to: " + response.redirectUrl);
+            // Navigate to the specified URL
+            window.location.href = response.redirectUrl;
+        }
+    },
+    error: function (error) {
+        console.error("Error updating database", error);
+    }
+});
+
+console.log("After AJAX request");
+
+}
+
+
+    
+  </script>
 
 </body>
 </html>

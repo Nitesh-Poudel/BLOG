@@ -17,7 +17,7 @@
       .reaction{border-top:1px solid gray;padding-top:20px;}
       .like{display:flex;align-items:center}
        #like{border:none;background:transparent;cursor: pointer;}
-    
+       .nav {height: 89px;}
     </style>
   
   

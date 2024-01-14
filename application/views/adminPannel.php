@@ -11,7 +11,7 @@
         <input type="text" name="newCatagory" id="newCatagory"placeholder="Add new catagory">
         <div id="error"><?php echo form_error('newCatagory');?></div><br>
 
-        <?=form_upload(['name'=>'userfile'])?>
+        <?=form_upload(['name'=>'catagoryImg'])?>
         <div id="error"><?php if(isset($upload_error)) {echo $upload_error;}?>
         </div><br>
 

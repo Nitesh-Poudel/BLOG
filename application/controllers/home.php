@@ -65,6 +65,7 @@
 
           
             $this->load->view('header', $data);
+            //$this->load->view('homeSidebar', $data);
             $this->load->view('home', $data);
         //}
 

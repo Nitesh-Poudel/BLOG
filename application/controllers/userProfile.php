@@ -118,7 +118,8 @@
             $userdata['userdata']=$this->userinfoModel->index($data);
             $userdata['userSaveddata']=$this->userinfoModel->getContent($data,'saved');
 
-
+            $this->load->view('header');
+       
             $this->load->view('userProfile',$userdata);
         }
                  

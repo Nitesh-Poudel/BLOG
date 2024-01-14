@@ -53,7 +53,7 @@
             $this->db->order_by('notificationId', 'desc'); // Order by notification ID in descending order
    
             $notifications = $this->db->get();
-            return $notifications->result_array(); // Assuming this returns an array of notification objects with blogTitle included
+            return $notifications->result_array(); 
         }
 
 
@@ -61,9 +61,15 @@
             $this->db->from('notification');
             $this->db->where('notificationTo', $user);
             $this->db->where('notificationFrom !=', $user);
-            $this->db->where('seen', 0); // Assuming 'seen' is a column indicating whether the notification is seen or not
-            
-            return $this->db->count_all_results(); // Returns the count of notifications that match the criteria
+            $this->db->where('seen', 0); 
+            return $this->db->count_all_results();
+        }
+
+        
+        public function updateNotification($user){
+            $data = array('seen' => 1); 
+            $this->db->where('notificationTo', $user);
+            $this->db->update('notification', $data);
         }
         
 

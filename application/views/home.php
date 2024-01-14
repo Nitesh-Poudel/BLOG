@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
     <link rel="stylesheet"a href="<?= base_url('/assect/style/mainStyle.css') ?>">
-
-    <style>
+  <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
       .reaction{display:flex;justify-content:space-between;align-items:center}
       button{border:none;background:transparent;}
       button img{width:20px}
@@ -24,7 +25,6 @@
   
 <div class="container">
 
-  
 
 
 <br><br>
@@ -88,5 +88,9 @@
 </div>
 
 </div>
+
+
+
+
 </body>
 </html>

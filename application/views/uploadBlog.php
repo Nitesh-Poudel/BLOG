@@ -26,14 +26,15 @@
 </head>
 
 <body>
-
-   
-   
-    <?php
+<?php
         include_once('header.php');
     ?>
+   
+   
+   
    <br><br><br>
    <div class="container">
+   
    <h1><?= $is_edit ? 'Edit Blog' : 'Write Blog' ?></h1>
         <?php echo form_open($form_action)?>
       <input type="text" placeholder="title" id="title"class="form-control" name="title"value="<?= $is_edit ? $editable['title'] : '' ?>">
