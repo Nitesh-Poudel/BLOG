@@ -27,7 +27,7 @@
                 <input type="password"class="form-control" placeholder="password" name="password">
                 <div id="error"><?php echo form_error('password');?></div><br>
             </div>
-            <button type="submit"name="login"  class="btn btn-primary">Login</button>
+            <button type="submit"name="login"  class="btn btn-primary">Login</button><p>Forget Password? <a href="#">Change Password</a></p>
         <?php echo form_close()?>
         </div>
        <br>
@@ -36,6 +36,7 @@
     <?php if(isset($loginFail)): ?>
         <?php echo $loginFail; ?>
     <?php endif; ?>
+    
 </div>
            
         

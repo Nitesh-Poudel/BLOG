@@ -67,9 +67,9 @@ table tr .seen1{background-color:white;}
   <div class="links">
       <div class="grp1">
        
-        <a href="<?= base_url('index.php/home')?>"><?php echo '<img src="' . base_url('/assect/images/systemImg/home.png') . '" title="Home">' ; ?></a>
-        <?php if(isset($_SESSION['userid'])):?>
-         
+         <?php if(isset($_SESSION['userid'])):?>
+          <a href="<?= base_url('index.php/home')?>"><?php echo '<img src="' . base_url('/assect/images/systemImg/home.png') . '" title="Home">' ; ?></a>
+      
           <a href="<?= base_url('index.php/UPLOAD')?>"><?php echo '<img src="' . base_url('/assect/images/systemImg/upload.png') . '" title="Upload">' ; ?>
 </a>
         <div class="notification"id="notification"width="20px"><?php echo '<img src="' . base_url('/assect/images/systemImg/bell.png') . '" title="Notification">' ; ?>
@@ -104,7 +104,8 @@ table tr .seen1{background-color:white;}
         <a href="<?= base_url('index.php/login')?>"><div>login</div></a>
       <?php endif;?>
 
-
+      <?php if(isset($_SESSION['userid'])):?>
+   
       <div class="dropdown">
       <a href="<?= base_url('index.php/userprofile')?>"><div>profile</div></a>
           <div><?php if(isset($_SESSION['userid'])):?>
@@ -115,6 +116,7 @@ table tr .seen1{background-color:white;}
     
       </div>
     </div>
+    <?php endif;?>
 
 
   </div>

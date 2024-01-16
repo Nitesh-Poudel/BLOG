@@ -27,8 +27,9 @@
     .tasks{display:flex;justify-content:flex-end;border-top:1px solid gray;margin-top:30px;}
     .tasks img{width:20px}
     button{border:none;background:transparent;cursor: pointer;margin:10px}
-    
-    
+    .settings{position: absolute;cursor: pointer;}
+    .setting{line-height:10px;position:relative;top:0px;left:0px;background-color:gold;padding:20px;display:none}
+    .settings:hover .setting{display:block;background-color:red}
   </style>
 </head>
 <body>
@@ -53,11 +54,18 @@
           <ul type="none">
             <li><a href="<?=base_url('index.php/userProfile')?>"><h5>My Contents</h5></a></li>
             <li><a href="<?=base_url('index.php/userProfile/saved')?>"><h5>Saved</h5></a></li>
-            <li><a href="#"><h5>Setting</h5></a></li>
+            <div class="settings"><li><h5>Setting</h5></li>
+              <div class="setting">
+                <li><a href="<?=base_url('index.php/setting/changePassword')?>">Change Password</a></li>
+                <li><a href="<?=base_url('index.php/setting/changeProfile')?>">Change Profile</a></li>
+                <li><a href="<?=base_url('index.php/setting/filterContent')?>">Filter Content</a></li>
+              </div>
+            </div>
           </ul>
         </div>
       
     </div>
+
       <div class="right">
    
         <div class="conttent">
@@ -108,6 +116,7 @@
 
         </div>
       </div>
+      
     </div>
   </div>
 </body>

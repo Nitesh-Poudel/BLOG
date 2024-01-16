@@ -40,6 +40,7 @@
   <div class="catagoryTable">
     <h6>Catagory</h6>
     <ul type="none">
+      <?php if(isset($categories)):?>
       <?php foreach ($categories as $category): ?>
             <div class="catagoryImg"><li> 
               <a href="Home?catagory=<?= $category->cid ?>">
@@ -48,6 +49,7 @@
             <div class="catagoryName"><b><?=$category->catagory?></b></div>
           </li></div><br>
       <?php endforeach; ?>
+      <?php endif;?>
         
     </ul>
   </div>

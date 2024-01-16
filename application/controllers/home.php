@@ -100,6 +100,7 @@
         $content['doILike']=$this->reactionModel->doILike($blogid,$user);
       
         $this->load->view('contentHighlight',$content);
+       
         
     }   
 

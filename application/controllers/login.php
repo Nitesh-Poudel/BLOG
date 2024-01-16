@@ -37,7 +37,7 @@ class login extends CI_controller{
                 //
                 $this->load->library('session');//loaded_session_library_file
                 $this->session->set_userdata('userid', 'admin');
-                redirect('adminPannel/admin');
+                redirect('adminPannel');
                 //$this->load->view('uploadBlog');
             }
 

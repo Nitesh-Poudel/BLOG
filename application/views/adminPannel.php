@@ -7,6 +7,7 @@
 
 </head>
 <body>
+    
     <?=form_open_multipart('adminpannel/validate');?>
         <input type="text" name="newCatagory" id="newCatagory"placeholder="Add new catagory">
         <div id="error"><?php echo form_error('newCatagory');?></div><br>

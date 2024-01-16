@@ -1,20 +1,18 @@
 <?php
     class adminPannel extends CI_controller{
 
+       
             public function index(){
-                echo"this_is_admin";
-            }
-      
-            public function admin(){
 
                 $this->load->library('session');
                 $user=$this->session->userdata('userid');
                 if($user=='admin'){
+                    //$this->load->view('header');
                     $this->load->view('adminPannel');
                 }
                 else{
                    //$this->load->view('home');
-                   redirect('home');
+                   redirect('login');
                 }
 
 
@@ -54,6 +52,7 @@
                         }
                     }
                 } else {
+                   
                     $this->load->view('adminPannel');
                 }
             }
