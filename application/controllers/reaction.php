@@ -41,7 +41,7 @@ class reaction extends CI_controller{
                 }
             }
             else{
-                redirect('login');
+                   redirect('login');
             }
            
         }
@@ -50,20 +50,27 @@ class reaction extends CI_controller{
 
 
         public function comment(){
+
             $this->load->library('session');
+            if(!$this->session->userdata('userid')){
+               
+                redirect('login');
+                
+            }
+          
             $userId= $this->session->userdata('userid');
             $blog=$this->input->post('blogid');
             $author=$this->input->post('author');
-          echo"tHIS_IS_USER_VARIABLE".$user=$this->input->post('user')."<br>";
+          //echo"tHIS_IS_USER_VARIABLE".$user=$this->input->post('user')."<br>";
             
-            if(1==1){
+            if($userId==$author){
               $this->load->library('form_validation') ;
               $this->form_validation->set_rules('comment','Comment','required|alpha_numeric_spaces');
               if($this->form_validation->run()){
                 $comment=$this->input->post('comment');
                
                 
-                if($comment!=''&&$blog!=''&&$user!=''){
+                if($comment!=''&&$blog!=''&&$userId!=''){
                     echo "IT_IS_SAme_user=".$user."<br>Blog=".$blog."<br>comment=".$comment;
                 
                     $this->load->model('reactionModel');

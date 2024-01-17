@@ -7,6 +7,8 @@
             $this->load->model('homeModel');
             $this->load->model('reactionModel');
             $this->load->model('notificationModel');
+            $this->load->model('userinfoModel');
+
             $this->load->library('session');
         }
     
@@ -23,6 +25,8 @@
             $contents = $this->homeModel->showContent($category);
             
             $blogid=$this->input->post('blogid');
+
+            $data['userinfo']=$this->userinfoModel->index($user);
 
             
             if($contents){
@@ -57,11 +61,9 @@
                 $data['likeCount'][$blogid] = $this->reactionModel->likeCount($blogid);
                 $data['CommentCount'][$blogid] = $this->reactionModel->CommentCount($blogid);
                 
-                // Rest of your code...
+             
             }
-            //echo'<pre>';
-           // print_r($data);
-            //exit()
+            
 
           
             $this->load->view('header', $data);
@@ -100,7 +102,12 @@
         $content['doILike']=$this->reactionModel->doILike($blogid,$user);
       
         $this->load->view('contentHighlight',$content);
-       
+
+        if(!$user){
+            $url=current_URL(). "?blogid=" . $blogid;
+            $this->session->set_userdata('lastURL',$url);
+        }
+           
         
     }   
 

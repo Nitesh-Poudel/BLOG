@@ -6,18 +6,12 @@ class login extends CI_controller{
         $this->load->library('session');
         $user = $this->session->userdata('userid');
         
-        if($user){
-            $this->load->view('home');
-           
-            exit;
-        }
-
-        else{
+        $lastURL = $this->session->userdata('lastURL');
+        if ($user) {
+            redirect($lastURL ? $lastURL : 'home');
+        } else {
             $this->load->helper('form');
             $this->load->view('login');
-
-          
-
         }
      
         
@@ -41,6 +35,7 @@ class login extends CI_controller{
                 //$this->load->view('uploadBlog');
             }
 
+           
             $this->load->model('loginModel'); // Correct model loading
             $user=$this->loginModel->LoginValidate($email, $password);
             if($user){
@@ -49,7 +44,11 @@ class login extends CI_controller{
                 $this->load->library('session');//loaded_session_library_file
                 $this->session->set_userdata('userid', $user);
                
-                redirect('home');
+                $lastURL = $this->session->userdata('lastURL');
+
+                redirect($lastURL ? $lastURL : 'home');
+              
+                $this->session->unset_userdata('lastURL');
             }
             else {
                 $this->load->library('session');
@@ -65,10 +64,11 @@ class login extends CI_controller{
     }
     public function logout(){
         $this->load->library('session');
-        $this->session->unset_userdata('userid');
-        redirect('login');
-        exit();
-        //echo'logout';
+        $this->session->sess_destroy();
+        echo '<script>alert("Logged out successfully!");</script>';
+
+     
+        $this->load->view('login');
     }
 }
 ?>

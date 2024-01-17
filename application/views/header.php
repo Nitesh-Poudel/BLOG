@@ -55,6 +55,8 @@
 }
 table tr.seen0{background-color:aliceblue;}
 table tr .seen1{background-color:white;}
+
+.user{display:flex;flex-direction:column;color:white}
 </style>
      
 
@@ -99,7 +101,10 @@ table tr .seen1{background-color:white;}
     </div>
     <div class="dropdownParent">
       <?php if(isset($_SESSION['userid'])):?>
+        <div class="user">
           <?php echo '<img src="' . base_url('/assect/images/systemImg/profile.png') . '" height=50px>' ; ?>
+          <?=$userinfo->fname?>
+        </div>
       <?php else:?>
         <a href="<?= base_url('index.php/login')?>"><div>login</div></a>
       <?php endif;?>
