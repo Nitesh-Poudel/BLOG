@@ -8,8 +8,13 @@
             $this->load->model('homeModel');
         }
         public function index(){
-            $data = $this->session->userdata('userid');
-          
+            $url_userid = $this->input->get('userid');
+            if($url_userid){
+                $data=$this->input->get('userid');
+            }
+            else{
+                $data = $this->session->userdata('userid');
+            }
           
 
             $userdata['userdata']=$this->userinfoModel->index($data);
@@ -124,9 +129,25 @@
         }
                  
 
+    
+
+
+    public function follow(){
+       
+        echo "follow_to".$this->input->post('followTo');
+        echo "follow_by".$this->input->post('followBy');
+        echo "follow_by".$this->session->userdata('userid');
+
+    }
+    public function block(){
+       
+        echo "block_to".$this->input->post('followTo');
+        echo "block_by".$this->input->post('followBy');
+        echo "block_by".$this->session->userdata('userid');
+
     }
 
 
-      
+}     
      
 ?>
