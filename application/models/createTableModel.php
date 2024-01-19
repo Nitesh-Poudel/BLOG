@@ -25,6 +25,63 @@ class createTableModel extends CI_Model{
             $this->createCommentsTable();
         }
 
+        if(!$this->db->table_exists('follow')){
+            $this->createFollowTable();
+        }
+        if(!$this->db->table_exists('block')){
+            $this->createFollowTable();
+        }
+
+    }
+
+    protected function createFollowTable(){
+        $fields=[
+            'followid'=>[
+                'type'=>'INT',
+                'constraint'=>11,
+                'auto_increment'=>true
+            ],
+            'followBy'=>[
+                'type'=>'INT'
+            ],
+            'followTo'=>[
+                'type'=>'INT'
+            ],
+            'date'=>[
+                'type'=>'VARCHAR',
+                'constraint'=>22
+            ]
+
+            
+            ];
+        $this->dbforge->add_key('followid', true);
+        $this->dbforge->add_field($fields);
+        //$this->dbforge->create_table('follow');
+    }
+
+    protected function createBlockTable(){
+        $fields=[
+            'blockid'=>[
+                'type'=>'INT',
+                'constraint'=>11,
+                'auto_increment'=>true
+            ],
+            'blockBy'=>[
+                'type'=>'INT'
+            ],
+            'blockTo'=>[
+                'type'=>'INT'
+            ],
+            'date'=>[
+                'type'=>'VARCHAR',
+                'constraint'=>22
+            ]
+
+            
+            ];
+        $this->dbforge->add_key('blockid', true);
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('block');
     }
 
     protected function createBlogsTable(){

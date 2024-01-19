@@ -1,5 +1,5 @@
 <?php
-    class registrationModel extends createTableModel{
+    class registrationModel extends CI_Model{
         public function register($fname,$lname,$email,$gender,$password){
 
             //$this->load->library('database');//this_can_be_include_in_auto_load

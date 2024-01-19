@@ -1,5 +1,5 @@
 <?php
-    class homeModel extends createTableModel{
+    class homeModel extends CI_Model{
         private $createTable;
         public function __construct() {
             //$this->load->model('createTableModel'); // Load the createTableModel-loader_in_autoload
@@ -112,10 +112,13 @@
         $data=[
             'title'=>$title,
             'catagoryID'=>$catagoryId,
-            'content'=>$content
-        ];
+            'content'=>$content,
+            
 
+        ];
+        $user=$this->session->userdata['userid'];
         $this->db->where('blogid', $blogid);
+        $this->db->where('userid', $user);
         $this->db->set($data); 
         $update=$this->db->update('blogs');
 

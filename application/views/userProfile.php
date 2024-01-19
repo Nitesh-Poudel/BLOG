@@ -53,7 +53,7 @@
         
         <div class="linkss">
           <ul type="none">
-          <?php if(!isset($_GET['userid'])):?>
+          <?php if(!isset($_GET['userid'])||$_GET['userid']==$_SESSION['userid']):?>
             <li><a href="<?=base_url('index.php/userProfile')?>"><h5>My Contents</h5></a></li>
             <li><a href="<?=base_url('index.php/userProfile/saved')?>"><h5>Saved</h5></a></li>
             <div class="settings"><li><h5>Setting</h5></li>
@@ -65,13 +65,14 @@
             </div>
             
             <?php else:?>
-              <?= form_open('userProfile/follow')?>
+              <?= form_open('relation/follow')?>
                 <input type="hidden" name="followBy" value="<?=$_SESSION['userid']?>">
-                <li><button>Follow</button></li>
+                <input type="hidden" name="followTo" value="<?=$_GET['userid']?>">
+                <li><button><?=$doIFollow?"Unfollow":"Follow"?></button></li>
               <?=form_close();?>
               
-              <?= form_open('userProfile/block')?>
-                   <input type="hidden" name="followTo" value="<?=$_GET['userid']?>">
+              <?= form_open('relation/block')?>
+                   <input type="hidden" name="blockTo" value="<?=$_GET['userid']?>">
                
                 <li><button>Block</button></li>
               <?= form_close()?>
@@ -102,7 +103,7 @@
                
                 <div class="tasks">
 
-              <?php if(isset($userUploadeddata)&& $_SESSION['userid']==$_GET['userid']||$_GET['userid']==''):?>
+              <?php $userid=''; if(isset($userUploadeddata)&& $_SESSION['userid']==$content->userid):?>
                 <?php// elseif($_SESSION['userid']==isset($_GET['userid'])):?>
                 <?= form_open('userprofile/edit');?>
                   <input type="hidden" value="<?= $content->blogid;?>" name="blogid">

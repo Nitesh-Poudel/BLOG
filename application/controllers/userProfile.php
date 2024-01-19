@@ -6,8 +6,11 @@
             $this->load->model('userinfoModel');
             $this->load->library('session');
             $this->load->model('homeModel');
+            $this->load->model('relationModel');
+            
         }
         public function index(){
+            $user=$this->session->userdata['userid'];
             $url_userid = $this->input->get('userid');
             if($url_userid){
                 $data=$this->input->get('userid');
@@ -20,6 +23,7 @@
             $userdata['userdata']=$this->userinfoModel->index($data);
            
             $userdata['userUploadeddata']=$this->userinfoModel->getContent($data);
+            $userdata['doIFollow']=$this->relationModel->isFollow($user,$url_userid);
          
             //print_r($userdata);
             $this->load->view('userProfile',$userdata);
@@ -131,21 +135,6 @@
 
     
 
-
-    public function follow(){
-       
-        echo "follow_to".$this->input->post('followTo');
-        echo "follow_by".$this->input->post('followBy');
-        echo "follow_by".$this->session->userdata('userid');
-
-    }
-    public function block(){
-       
-        echo "block_to".$this->input->post('followTo');
-        echo "block_by".$this->input->post('followBy');
-        echo "block_by".$this->session->userdata('userid');
-
-    }
 
 
 }     

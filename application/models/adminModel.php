@@ -1,5 +1,5 @@
 <?php
-    class adminModel extends createTableModel{
+    class adminModel extends CI_Model{
         public function addCatagory($catagory,$imgName=''){
             if(!$this->db->table_exists('catagory')){
                 $createTable=new createTableModel();

@@ -35,7 +35,7 @@ if(isset($_SESSION['userid'])){$user=$_SESSION['userid'];}?>
         <h2><?= $result['title']; ?></h2>
         <p><?= $result['content']; ?></p>
         <h6><b><a href="<?=base_url('index.php\userProfile?userid='.$result['uid'])?>">
-        Author :- <?= $result['fname']; ?><?= $result['uid']; ?>
+      <?=isset($_SESSION['userid'])?"Author :- " .$result['fname']:''; ?>
         </a></b></h6>
     </div>
     <div class="reaction">

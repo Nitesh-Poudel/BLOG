@@ -20,7 +20,7 @@
             if($todo=='saved'){
                 $this->db->select('*');
                 $this->db->join('save', 'blogs.blogid = save.blogid'); // Fix the join statement
-                $this->db->where(['save.userid'=>1]);
+                $this->db->where(['save.userid'=>$userid]);
                 $query=$this->db->get('blogs');
 
                 if ($query->num_rows() >= 1) {

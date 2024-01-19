@@ -1,5 +1,5 @@
 <?php
-    class reactionModel extends createTableModel{
+    class reactionModel extends CI_Model{
         public function CheckLike($blogId, $userId) {
             $this->db->from('likes');
             $this->db->where('likes.blogid', $blogId);
